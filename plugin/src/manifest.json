@@ -1,16 +1,27 @@
 {
-  "name": "Chrome Extension Webpack",
+  "name": "Getting Started Example",
   "options_page": "options.html",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
-    "page": "background.html"
+    "scripts": ["background.bundle.js"],
+    "persistent": false
   },
-  "browser_action": {
+  "page_action": {
     "default_popup": "popup.html",
-    "default_icon": "icon-34.png"
+    "default_icon": {
+      "16": "get_started16.png",
+      "32": "get_started32.png",
+      "48": "get_started48.png",
+      "128": "get_started128.png"
+    }
   },
   "icons": {
-    "128": "icon-128.png"
+    "16": "get_started16.png",
+    "32": "get_started32.png",
+    "48": "get_started48.png",
+    "128": "get_started128.png"
   },
-  "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "manifest_version": 2
 }
