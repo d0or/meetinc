@@ -1,0 +1,4 @@
+type MeetupCreated @entity {
+  id: ID!
+  url: String! # string
+}
