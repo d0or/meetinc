@@ -1,0 +1,58 @@
+# This is sample SDL schema for GraphQL Faker.
+#
+# There are two directives you can use to enhance fake data:
+#   - @fake
+#   - @examples
+# Each directive has autocompletion working so start by typing @
+#
+# Press save or Cmd+Enter to apply the changes and update server. Switch to GraphiQL
+# on the left panel to immediately test your changes.
+# This tool also supports extending existing APIs. Check graphql-faker --help
+#
+# Developed with ❤️ by APIs.guru | https://github.com/APIs-guru/graphql-faker
+
+type Company {
+  name: String @fake(type:companyName)
+  industry: String @examples(values: ["IT", "Manufacturing", "Medicine", "Media"])
+  employees: [Employee!] @listLength(min: 5, max: 10)
+}
+
+type Employee {
+  firstName: String @fake(type: firstName, locale:en_CA)
+  lastName: String @fake(type: lastName, locale:en_CA)
+  address: String @fake(type:streetAddress, options: { useFullAddress: true })
+  subordinates: [Employee!] @listLength(min: 0, max: 3)
+  company: Company
+}
+
+type Location {
+  lat: Float @fake(type: latitude)
+  lon: Float @fake(type: longitude)
+}
+type Venue {
+  location: Location
+}
+type MeetupData {
+	url: String @fake(type:url)
+  title: String @fake(type: lorem, options: {loremSize: sentence})
+  starts: String @fake(type:futureDate)
+  ends: String @fake(type:futureDate)
+  image:String @fake(type: imageUrl)
+  venue:Venue
+}
+
+type MeetupCreated {
+  id: String @fake(type: uuid)
+  url: String @fake(type:url)
+  cid: String @fake(type: uuid)
+  ipfs: MeetupData
+}
+
+type Query {
+  employee(id: ID): Employee
+  company(id: ID): Company
+  allCompanies: [Company!]
+  meetupCreated(id: String): MeetupCreated
+  meetupCreateds: [MeetupCreated]
+  
+}
