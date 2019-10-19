@@ -1,39 +1,68 @@
-# Team-21
-## Team Meeting: Taking out the Middle man for community events
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-At Diffusion Devcon 2019 Team Meeting builds a smart contract based solution for meetup like events. Each meetup group is a topically 
-and locally focused community coming with individual rules. We therefore model each group as an individual smart contract that holds a state of 
+## Available Scripts
 
-- group creator (immutable)
-- current organizer team (+ 1..n "admins" who are fully capable of changing all rules)
+In the project directory, you can run:
 
-- group metadata
-	+ - title 
-	+ - tags (array:string)
-	+ - home turf(s) (e.g. "coding portugal" ["Porto", "Lisboa","Coimbra", "Portimao"])
-	+ 
-- array:members of that group (must be "leavable")
-- array:events ("instances")
-	- title
-	- venue information (address, WGS84 location, door title)
-	- price 
-	- attendees ("rsvp"s of each event)
+### `yarn start`
 
-//we could also model each *event* as an individual, rule based smart contract spawned by the group
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-More complex data (e.g. event descriptions, photos, logos) is to be stored on a decentralized filesystem (ipfs)
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-We'd like to solve the "at the door case". Every attendee should be "identifiable" at the door. We could use the ĐOor idea of it. We can also go with the FOAM protocol to safely locate a user based on their trusted beacon network. By tracing that a user can verifiably claim that he attended the event at a time and at a date.
+### `yarn test`
 
-It should be 1000% free for attendees to join an event. Gas Station Networks can help us to move the gas fees towards the meetup group organizers. Since meetup.com is charging 80€/y hosts are absolutely used to paying fees anyway.
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Tickets. If an event is *not* free, you can either 
-- send transaction containing the fee to a method of the group's smart contract (containing the events' index / "id")
-- sell fungible tokens (coined after the group's or the event's name - using Proof of Attendance / FOAM might even get you coins you can use to pay / present for other events ;) )
-- sell NFTs (each ticket is individual, which might be useful for highly controlled entrance scenarios)
+### `yarn build`
 
-Discovery. The strength of meetup.com is to find more meetup groups of your interest. To search events on chain we evaluate using TheGraph for offchain queries. We also think of deep querying the ledger to find user relations (addresses that joined this event also are members of that group)
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Governance. We'd employ the DAOStack as a tool for organizers, hosts and community members to judge about a meetups' leadership. No more "the organizer of X stepped down, you want to take over for €80?" messages and hostile takeovers.
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-Identity. While there are SSI solutions with a claim backed trust model, if we need it, I'd shoot for 3box which is simply returning a token that's bound to a more or less socially upheated profile.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `yarn build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
