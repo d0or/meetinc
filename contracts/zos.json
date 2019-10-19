@@ -1,0 +1,16 @@
+{
+  "zosversion": "2.2",
+  "contracts": {
+    "Meeting": "Meeting"
+  },
+  "dependencies": {},
+  "name": "Meeting",
+  "version": "0.1.0",
+  "compiler": {
+    "manager": "zos",
+    "compilerSettings": {
+      "optimizer": {}
+    },
+    "solcVersion": "0.5.12"
+  }
+}

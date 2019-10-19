@@ -1,0 +1,136 @@
+{
+  "contracts": {
+    "Meeting": {
+      "address": "0x6F252D17C897A67b8Ce3386ea74BccFCDe5257c2",
+      "constructorCode": "60806040523480156100115760006000fd5b50610017565b610a04806100266000396000f3fe",
+      "bodyBytecodeHash": "5308318dcb84ab4060119544af4533fd2139945187f0f8e327c5be7eb6b75712",
+      "localBytecodeHash": "d587f723bc33fc5e36eb870af61d1084a6268431d6976c04aae9c7d27b2960ae",
+      "deployedBytecodeHash": "d587f723bc33fc5e36eb870af61d1084a6268431d6976c04aae9c7d27b2960ae",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_array:50<t_uint256>": {
+          "id": "t_array:50<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "50",
+          "kind": "array",
+          "label": "uint256[50]"
+        },
+        "t_struct<Meeting.EventStruct>": {
+          "id": "t_struct<Meeting.EventStruct>",
+          "kind": "struct",
+          "label": "Meeting.EventStruct",
+          "members": [
+            {
+              "label": "rsvps",
+              "astId": 7,
+              "type": "t_array:dyn<t_address>",
+              "src": "136:15:0"
+            },
+            {
+              "label": "isRegistered",
+              "astId": 9,
+              "type": "t_bool",
+              "src": "157:17:0"
+            }
+          ]
+        },
+        "t_address": {
+          "id": "t_address",
+          "kind": "elementary",
+          "label": "address"
+        },
+        "t_array:dyn<t_address>": {
+          "id": "t_array:dyn<t_address>",
+          "valueType": "t_address",
+          "length": "dyn",
+          "kind": "array",
+          "label": "address[]"
+        },
+        "t_mapping<t_struct<Meeting.EventStruct>>": {
+          "id": "t_mapping<t_struct<Meeting.EventStruct>>",
+          "valueType": "t_struct<Meeting.EventStruct>",
+          "label": "mapping(key => Meeting.EventStruct)",
+          "kind": "mapping"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Initializable",
+          "path": "zos-lib/contracts/Initializable.sol",
+          "label": "initialized",
+          "astId": 183,
+          "type": "t_bool",
+          "src": "757:24:2"
+        },
+        {
+          "contract": "Initializable",
+          "path": "zos-lib/contracts/Initializable.sol",
+          "label": "initializing",
+          "astId": 185,
+          "type": "t_bool",
+          "src": "876:25:2"
+        },
+        {
+          "contract": "Initializable",
+          "path": "zos-lib/contracts/Initializable.sol",
+          "label": "______gap",
+          "astId": 241,
+          "type": "t_array:50<t_uint256>",
+          "src": "1951:29:2"
+        },
+        {
+          "contract": "Meeting",
+          "path": "contracts/Meeting.sol",
+          "label": "events",
+          "astId": 14,
+          "type": "t_mapping<t_struct<Meeting.EventStruct>>",
+          "src": "183:45:0"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": false,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": [],
+        "storageUncheckedVars": [
+          {
+            "contract": "Meeting",
+            "path": "contracts/Meeting.sol",
+            "label": "events",
+            "astId": 14,
+            "type": "t_mapping<t_struct<Meeting.EventStruct>>",
+            "src": "183:45:0"
+          }
+        ],
+        "storageDiff": []
+      }
+    }
+  },
+  "solidityLibs": {},
+  "proxies": {
+    "Meeting/Meeting": [
+      {
+        "address": "0xC2698A3b8a37A03BbC318b5Adef06d4b5097ea32",
+        "version": "0.1.0",
+        "implementation": "0x6F252D17C897A67b8Ce3386ea74BccFCDe5257c2",
+        "admin": "0x20Cd159E947A416Fcc736Df1252dD365D161b8E9",
+        "kind": "Upgradeable"
+      }
+    ]
+  },
+  "zosversion": "2.2",
+  "version": "0.1.0",
+  "proxyAdmin": {
+    "address": "0x20Cd159E947A416Fcc736Df1252dD365D161b8E9"
+  }
+}
