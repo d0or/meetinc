@@ -1,20 +1,18 @@
 [
   {
     "constant": true,
-    "inputs": [{ "name": "", "type": "bytes32" }],
+    "inputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
     "name": "meetups",
-    "outputs": [{ "name": "", "type": "uint8" }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [{ "name": "", "type": "bytes32" }],
-    "name": "events",
     "outputs": [
-      { "name": "cid", "type": "bytes" },
-      { "name": "isCanceled", "type": "bool" }
+      {
+        "name": "",
+        "type": "uint8"
+      }
     ],
     "payable": false,
     "stateMutability": "view",
@@ -22,9 +20,19 @@
   },
   {
     "constant": true,
-    "inputs": [{ "name": "", "type": "bytes32" }],
+    "inputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
     "name": "attendees",
-    "outputs": [{ "name": "", "type": "uint8" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
@@ -32,8 +40,16 @@
   {
     "anonymous": false,
     "inputs": [
-      { "indexed": false, "name": "url", "type": "string" },
-      { "indexed": false, "name": "cid", "type": "bytes" }
+      {
+        "indexed": false,
+        "name": "url",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "cid",
+        "type": "bytes"
+      }
     ],
     "name": "MeetupCreated",
     "type": "event"
@@ -41,8 +57,16 @@
   {
     "anonymous": false,
     "inputs": [
-      { "indexed": false, "name": "url", "type": "string" },
-      { "indexed": false, "name": "attendee", "type": "address" }
+      {
+        "indexed": false,
+        "name": "url",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "attendee",
+        "type": "address"
+      }
     ],
     "name": "MeetupRSVPee",
     "type": "event"
@@ -50,8 +74,14 @@
   {
     "constant": false,
     "inputs": [
-      { "name": "url", "type": "string" },
-      { "name": "cid", "type": "bytes" }
+      {
+        "name": "url",
+        "type": "string"
+      },
+      {
+        "name": "cid",
+        "type": "bytes"
+      }
     ],
     "name": "rsvpForEvent",
     "outputs": [],
@@ -61,7 +91,12 @@
   },
   {
     "constant": false,
-    "inputs": [{ "name": "url", "type": "string" }],
+    "inputs": [
+      {
+        "name": "url",
+        "type": "string"
+      }
+    ],
     "name": "rsvpForEvent",
     "outputs": [],
     "payable": false,
@@ -71,74 +106,79 @@
   {
     "constant": true,
     "inputs": [
-      { "name": "url", "type": "string" },
-      { "name": "identity", "type": "address" }
+      {
+        "name": "url",
+        "type": "string"
+      },
+      {
+        "name": "identity",
+        "type": "address"
+      }
     ],
     "name": "isAttending",
-    "outputs": [{ "name": "attending", "type": "bool" }],
+    "outputs": [
+      {
+        "name": "attending",
+        "type": "bool"
+      }
+    ],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": true,
-    "inputs": [{ "name": "url", "type": "string" }],
+    "inputs": [
+      {
+        "name": "url",
+        "type": "string"
+      }
+    ],
     "name": "isAttending",
-    "outputs": [{ "name": "attending", "type": "bool" }],
+    "outputs": [
+      {
+        "name": "attending",
+        "type": "bool"
+      }
+    ],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": true,
-    "inputs": [{ "name": "id", "type": "bytes32" }],
-    "name": "getAttendees",
-    "outputs": [{ "name": "attendants", "type": "address[]" }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [{ "name": "url", "type": "string" }],
-    "name": "getAttendees",
-    "outputs": [{ "name": "attendants", "type": "address[]" }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [{ "name": "id", "type": "bytes32" }],
+    "inputs": [
+      {
+        "name": "url",
+        "type": "string"
+      }
+    ],
     "name": "isRegistered",
-    "outputs": [{ "name": "registered", "type": "bool" }],
+    "outputs": [
+      {
+        "name": "registered",
+        "type": "bool"
+      }
+    ],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": true,
-    "inputs": [{ "name": "url", "type": "string" }],
-    "name": "isRegistered",
-    "outputs": [{ "name": "registered", "type": "bool" }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [{ "name": "id", "type": "bytes32" }],
+    "inputs": [
+      {
+        "name": "url",
+        "type": "string"
+      }
+    ],
     "name": "countAttendees",
-    "outputs": [{ "name": "users", "type": "uint256" }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [{ "name": "url", "type": "string" }],
-    "name": "countAttendees",
-    "outputs": [{ "name": "users", "type": "uint256" }],
+    "outputs": [
+      {
+        "name": "users",
+        "type": "uint256"
+      }
+    ],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
