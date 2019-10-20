@@ -31,6 +31,49 @@ export class MeetupCreated__Params {
   get url(): string {
     return this._event.parameters[0].value.toString();
   }
+
+  get cid(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+}
+
+export class MeetupRSVPee extends EthereumEvent {
+  get params(): MeetupRSVPee__Params {
+    return new MeetupRSVPee__Params(this);
+  }
+}
+
+export class MeetupRSVPee__Params {
+  _event: MeetupRSVPee;
+
+  constructor(event: MeetupRSVPee) {
+    this._event = event;
+  }
+
+  get url(): string {
+    return this._event.parameters[0].value.toString();
+  }
+
+  get attendee(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+}
+
+export class Contract__eventsResult {
+  value0: Bytes;
+  value1: boolean;
+
+  constructor(value0: Bytes, value1: boolean) {
+    this.value0 = value0;
+    this.value1 = value1;
+  }
+
+  toMap(): TypedMap<string, EthereumValue> {
+    let map = new TypedMap<string, EthereumValue>();
+    map.set("value0", EthereumValue.fromBytes(this.value0));
+    map.set("value1", EthereumValue.fromBoolean(this.value1));
+    return map;
+  }
 }
 
 export class Contract extends SmartContract {
@@ -38,13 +81,33 @@ export class Contract extends SmartContract {
     return new Contract("Contract", address);
   }
 
-  events(param0: Bytes): boolean {
-    let result = super.call("events", [EthereumValue.fromFixedBytes(param0)]);
+  meetups(param0: Bytes): i32 {
+    let result = super.call("meetups", [EthereumValue.fromFixedBytes(param0)]);
 
-    return result[0].toBoolean();
+    return result[0].toI32();
   }
 
-  try_events(param0: Bytes): CallResult<boolean> {
+  try_meetups(param0: Bytes): CallResult<i32> {
+    let result = super.tryCall("meetups", [
+      EthereumValue.fromFixedBytes(param0)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toI32());
+  }
+
+  events(param0: Bytes): Contract__eventsResult {
+    let result = super.call("events", [EthereumValue.fromFixedBytes(param0)]);
+
+    return new Contract__eventsResult(
+      result[0].toBytes(),
+      result[1].toBoolean()
+    );
+  }
+
+  try_events(param0: Bytes): CallResult<Contract__eventsResult> {
     let result = super.tryCall("events", [
       EthereumValue.fromFixedBytes(param0)
     ]);
@@ -52,7 +115,164 @@ export class Contract extends SmartContract {
       return new CallResult();
     }
     let value = result.value;
+    return CallResult.fromValue(
+      new Contract__eventsResult(value[0].toBytes(), value[1].toBoolean())
+    );
+  }
+
+  attendees(param0: Bytes): i32 {
+    let result = super.call("attendees", [
+      EthereumValue.fromFixedBytes(param0)
+    ]);
+
+    return result[0].toI32();
+  }
+
+  try_attendees(param0: Bytes): CallResult<i32> {
+    let result = super.tryCall("attendees", [
+      EthereumValue.fromFixedBytes(param0)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toI32());
+  }
+
+  isAttending(url: string, identity: Address): boolean {
+    let result = super.call("isAttending", [
+      EthereumValue.fromString(url),
+      EthereumValue.fromAddress(identity)
+    ]);
+
+    return result[0].toBoolean();
+  }
+
+  try_isAttending(url: string, identity: Address): CallResult<boolean> {
+    let result = super.tryCall("isAttending", [
+      EthereumValue.fromString(url),
+      EthereumValue.fromAddress(identity)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
     return CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isAttending1(url: string): boolean {
+    let result = super.call("isAttending", [EthereumValue.fromString(url)]);
+
+    return result[0].toBoolean();
+  }
+
+  try_isAttending1(url: string): CallResult<boolean> {
+    let result = super.tryCall("isAttending", [EthereumValue.fromString(url)]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
+  }
+
+  getAttendees(id: Bytes): Array<Address> {
+    let result = super.call("getAttendees", [EthereumValue.fromFixedBytes(id)]);
+
+    return result[0].toAddressArray();
+  }
+
+  try_getAttendees(id: Bytes): CallResult<Array<Address>> {
+    let result = super.tryCall("getAttendees", [
+      EthereumValue.fromFixedBytes(id)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toAddressArray());
+  }
+
+  getAttendees1(url: string): Array<Address> {
+    let result = super.call("getAttendees", [EthereumValue.fromString(url)]);
+
+    return result[0].toAddressArray();
+  }
+
+  try_getAttendees1(url: string): CallResult<Array<Address>> {
+    let result = super.tryCall("getAttendees", [EthereumValue.fromString(url)]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toAddressArray());
+  }
+
+  isRegistered(id: Bytes): boolean {
+    let result = super.call("isRegistered", [EthereumValue.fromFixedBytes(id)]);
+
+    return result[0].toBoolean();
+  }
+
+  try_isRegistered(id: Bytes): CallResult<boolean> {
+    let result = super.tryCall("isRegistered", [
+      EthereumValue.fromFixedBytes(id)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isRegistered1(url: string): boolean {
+    let result = super.call("isRegistered", [EthereumValue.fromString(url)]);
+
+    return result[0].toBoolean();
+  }
+
+  try_isRegistered1(url: string): CallResult<boolean> {
+    let result = super.tryCall("isRegistered", [EthereumValue.fromString(url)]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
+  }
+
+  countAttendees(id: Bytes): BigInt {
+    let result = super.call("countAttendees", [
+      EthereumValue.fromFixedBytes(id)
+    ]);
+
+    return result[0].toBigInt();
+  }
+
+  try_countAttendees(id: Bytes): CallResult<BigInt> {
+    let result = super.tryCall("countAttendees", [
+      EthereumValue.fromFixedBytes(id)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBigInt());
+  }
+
+  countAttendees1(url: string): BigInt {
+    let result = super.call("countAttendees", [EthereumValue.fromString(url)]);
+
+    return result[0].toBigInt();
+  }
+
+  try_countAttendees1(url: string): CallResult<BigInt> {
+    let result = super.tryCall("countAttendees", [
+      EthereumValue.fromString(url)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBigInt());
   }
 }
 
@@ -76,12 +296,46 @@ export class RsvpForEventCall__Inputs {
   get url(): string {
     return this._call.inputValues[0].value.toString();
   }
+
+  get cid(): Bytes {
+    return this._call.inputValues[1].value.toBytes();
+  }
 }
 
 export class RsvpForEventCall__Outputs {
   _call: RsvpForEventCall;
 
   constructor(call: RsvpForEventCall) {
+    this._call = call;
+  }
+}
+
+export class RsvpForEvent1Call extends EthereumCall {
+  get inputs(): RsvpForEvent1Call__Inputs {
+    return new RsvpForEvent1Call__Inputs(this);
+  }
+
+  get outputs(): RsvpForEvent1Call__Outputs {
+    return new RsvpForEvent1Call__Outputs(this);
+  }
+}
+
+export class RsvpForEvent1Call__Inputs {
+  _call: RsvpForEvent1Call;
+
+  constructor(call: RsvpForEvent1Call) {
+    this._call = call;
+  }
+
+  get url(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+}
+
+export class RsvpForEvent1Call__Outputs {
+  _call: RsvpForEvent1Call;
+
+  constructor(call: RsvpForEvent1Call) {
     this._call = call;
   }
 }
