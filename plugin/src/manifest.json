@@ -1,8 +1,7 @@
 {
-  "name": "Getting Started Example",
-  "options_page": "options.html",
+  "name": "Add this event",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "Adds an event to Ethereum",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
     "scripts": ["background.js"],

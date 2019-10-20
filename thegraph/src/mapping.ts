@@ -2,7 +2,7 @@ import {
   MeetupCreated as MeetupCreatedEvent,
   MeetupRSVPee as MeetupRSVPeeEvent
 } from "../generated/Contract/Contract"
-import { Meetup, Attendee } from "../generated/schema"
+import { Meetup, Attendee, Location } from "../generated/schema"
 import { ipfs, JSONValue, Value } from "@graphprotocol/graph-ts"
 
 export function handleMeetupCreated(event: MeetupCreatedEvent): void {
@@ -20,11 +20,17 @@ export function handleIPFS(value: JSONValue, url: string): void {
   let obj = value.toObject()
   let meetup = Meetup.load(url)
 
+  let loc = new Location(
+    url+"---"+ meetup.location
+  )
+  loc.lat = obj.get("location.geo.latitude").toString()
+  loc.long = obj.get("location.geo.longitude").toString()
+  loc.save()
 
   meetup.title = obj.get("title").toString()
   meetup.start = obj.get("title").toString()
   meetup.ends = obj.get("image").toString()
-  meetup.location = obj.get("location").toString()
+  meetup.location = loc.id
   meetup.save()
 }
 

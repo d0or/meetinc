@@ -6,12 +6,18 @@ type Meetup @entity {
   title: String
   start: String
   ends: String
-  image: String,
-  location: String
+  image: String
+  location: Location
 }
 
 type Attendee @entity {
   id: ID!
   address: Bytes!
   timestamp: String!
+}
+
+type Location @entity {
+  id: ID!
+  lat: String,
+  long: String
 }
