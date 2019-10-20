@@ -2,7 +2,7 @@ type Meetup @entity {
   id: ID!
   url: String! # string
   cid: Bytes! # bytes 
-  attendees: [Attendee]! # address
+  attendees: [String!] # address
   title: String
   start: String
   ends: String
