@@ -1,0 +1,186 @@
+[
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "url",
+                "type": "string"
+            },
+            {
+                "name": "cid",
+                "type": "bytes"
+            }
+        ],
+        "name": "rsvpForEvent",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "url",
+                "type": "string"
+            }
+        ],
+        "name": "rsvpForEvent",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "url",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "cid",
+                "type": "bytes"
+            }
+        ],
+        "name": "MeetupCreated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "url",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "attendee",
+                "type": "address"
+            }
+        ],
+        "name": "MeetupRSVPee",
+        "type": "event"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "name": "attendees",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "url",
+                "type": "string"
+            }
+        ],
+        "name": "countAttendees",
+        "outputs": [
+            {
+                "name": "users",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "url",
+                "type": "string"
+            },
+            {
+                "name": "identity",
+                "type": "address"
+            }
+        ],
+        "name": "isAttending",
+        "outputs": [
+            {
+                "name": "attending",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "url",
+                "type": "string"
+            }
+        ],
+        "name": "isAttending",
+        "outputs": [
+            {
+                "name": "attending",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "url",
+                "type": "string"
+            }
+        ],
+        "name": "isRegistered",
+        "outputs": [
+            {
+                "name": "registered",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "name": "meetups",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }
+]

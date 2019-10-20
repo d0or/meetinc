@@ -58,34 +58,26 @@ contract Meeting {
     attending = attendees[attend] == 2;
   }
 
-  function getAttendees(bytes32 id) public view returns (address[] memory attendants) {
+  /*function getAttendees(bytes32 id) public view returns (address[] memory attendants) {
     if (meetups[id] > 0) {
       attendants = events[id].rsvps;
     } else {
       attendants = new address[](0);
     }
-  }
+  }*/
 
-  function getAttendees(string memory url) public view returns (address[] memory attendants) {
+  /*function getAttendees(string memory url) public view returns (address[] memory attendants) {
     bytes32 id = keccak256(abi.encode(url));
     attendants = getAttendees(id);
-  }
-
-  function isRegistered(bytes32 id) public view returns (bool registered) {
-      registered = meetups[id] > 0;
-  }
+  }*/
 
   function isRegistered(string memory url) public view returns (bool registered) {
     bytes32 id = keccak256(abi.encode(url));
-    registered = isRegistered(id);
-  }
-
-  function countAttendees(bytes32  id) public view returns (uint users) {
-    users = meetups[id];
+    registered = meetups[id] > 0;
   }
 
   function countAttendees(string memory url) public view returns (uint users) {
     bytes32 id = keccak256(abi.encode(url));
-    users = countAttendees(id);
+    users = meetups[id];
   }
 }
