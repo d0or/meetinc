@@ -51,7 +51,7 @@ function sendResult(result){
     });
 
     if (result.redirect) {
-        document.location.href = "https://www.google.de"; //result.redirect
+        document.location.href = result.redirect;
     }
 }
 
@@ -61,12 +61,13 @@ IPFS.create({ repo: String(Math.random() + Date.now()) }).then(ipfs => {
     if (parsed.jsonld && parsed.jsonld.Event) {
         // console.log(parsed.jsonld.Event)
         const url = document.location.href
+        const redirectUrl = 'https://build.elmariachi.now.sh/signup?url='
         return eventOnEth(url).then(res => {
             if (res === true) {
                 // alert("this event already is tracked on Eth. Join it!");
 
                 sendResult({
-                    redirect: document.location.href,
+                    redirect: encodeURI(redirectUrl + url),
                     cid: null
                 });                
             } else {
@@ -75,7 +76,7 @@ IPFS.create({ repo: String(Math.random() + Date.now()) }).then(ipfs => {
                     //const data = await node.cat(hash)
                     
                     sendResult({
-                        redirect: document.location.href,
+                        redirect: encodeURI(redirectUrl + url + '&cid=' + hash),
                         cid: hash
                     });
                 });
