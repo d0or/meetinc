@@ -97,7 +97,7 @@
         "type": "string"
       }
     ],
-    "name": "rsvpForEvent",
+    "name": "rsvpForExistingEvent",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
@@ -109,10 +109,6 @@
       {
         "name": "url",
         "type": "string"
-      },
-      {
-        "name": "identity",
-        "type": "address"
       }
     ],
     "name": "isAttending",
@@ -132,9 +128,13 @@
       {
         "name": "url",
         "type": "string"
+      },
+      {
+        "name": "identity",
+        "type": "address"
       }
     ],
-    "name": "isAttending",
+    "name": "isOtherAttending",
     "outputs": [
       {
         "name": "attending",

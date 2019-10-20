@@ -60,13 +60,21 @@ export class Meetup extends Entity {
     this.set("cid", Value.fromBytes(value));
   }
 
-  get attendees(): Array<string | null> {
+  get attendees(): Array<string> | null {
     let value = this.get("attendees");
-    return value.toStringArray();
+    if (value === null) {
+      return null;
+    } else {
+      return value.toStringArray();
+    }
   }
 
-  set attendees(value: Array<string | null>) {
-    this.set("attendees", Value.fromStringArray(value));
+  set attendees(value: Array<string> | null) {
+    if (value === null) {
+      this.unset("attendees");
+    } else {
+      this.set("attendees", Value.fromStringArray(value as Array<string>));
+    }
   }
 
   get title(): string | null {
