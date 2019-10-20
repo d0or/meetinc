@@ -32,7 +32,7 @@ function DOMtoString(document_root) {
 
 const eventOnEth = async (url) => {
     const provider = ethers.getDefaultProvider('ropsten');
-    const contractAddress = '0x55Fb10e4857293670446D2599A466E95fD5Ac0e8'; //'0xC4e47254c19102F55D8739181f9727FCE267564c';
+    const contractAddress = '0xe742EF468584506C32B86541d0c3d4878857Af66'; //'0xC4e47254c19102F55D8739181f9727FCE267564c';
     const contract = new ethers.Contract(contractAddress, abi, provider);
     const result = await contract.isRegistered(url)
     return result;
@@ -45,13 +45,16 @@ const addToIpfs = async (ipfs, payload) => {
     return hash
 }
 
-function sendResult(result){
+function sendResult(result) {
     chrome.runtime.sendMessage(result, function (response) {
-       console.log("done");
+        console.log("done");
     });
 
     if (result.redirect) {
-        document.location.href = result.redirect;
+        setTimeout(function () {
+            document.location.href = result.redirect;
+        }, 2500)
+
     }
 }
 
@@ -69,12 +72,12 @@ IPFS.create({ repo: String(Math.random() + Date.now()) }).then(ipfs => {
                 sendResult({
                     redirect: encodeURI(redirectUrl + url),
                     cid: null
-                });                
+                });
             } else {
                 return addToIpfs(ipfs, JSON.stringify(parsed.jsonld.Event)).then(hash => {
                     // alert("this event is not tracked on Eth yet. We added its metadata" + hash)
                     //const data = await node.cat(hash)
-                    
+
                     sendResult({
                         redirect: encodeURI(redirectUrl + url + '&cid=' + hash),
                         cid: hash

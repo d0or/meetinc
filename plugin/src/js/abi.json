@@ -1,34 +1,40 @@
 [
     {
-        "constant": false,
+        "constant": true,
         "inputs": [
             {
-                "name": "url",
-                "type": "string"
-            },
-            {
-                "name": "cid",
-                "type": "bytes"
+                "name": "",
+                "type": "bytes32"
             }
         ],
-        "name": "rsvpForEvent",
-        "outputs": [],
+        "name": "meetups",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
         "payable": false,
-        "stateMutability": "nonpayable",
+        "stateMutability": "view",
         "type": "function"
     },
     {
-        "constant": false,
+        "constant": true,
         "inputs": [
             {
-                "name": "url",
-                "type": "string"
+                "name": "",
+                "type": "bytes32"
             }
         ],
-        "name": "rsvpForEvent",
-        "outputs": [],
+        "name": "attendees",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
         "payable": false,
-        "stateMutability": "nonpayable",
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -66,53 +72,43 @@
         "type": "event"
     },
     {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "",
-                "type": "bytes32"
-            }
-        ],
-        "name": "attendees",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint8"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "url",
-                "type": "string"
-            }
-        ],
-        "name": "countAttendees",
-        "outputs": [
-            {
-                "name": "users",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
+        "constant": false,
         "inputs": [
             {
                 "name": "url",
                 "type": "string"
             },
             {
-                "name": "identity",
-                "type": "address"
+                "name": "cid",
+                "type": "bytes"
+            }
+        ],
+        "name": "rsvpForEvent",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "url",
+                "type": "string"
+            }
+        ],
+        "name": "rsvpForExistingEvent",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "url",
+                "type": "string"
             }
         ],
         "name": "isAttending",
@@ -132,9 +128,13 @@
             {
                 "name": "url",
                 "type": "string"
+            },
+            {
+                "name": "identity",
+                "type": "address"
             }
         ],
-        "name": "isAttending",
+        "name": "isOtherAttending",
         "outputs": [
             {
                 "name": "attending",
@@ -168,15 +168,15 @@
         "constant": true,
         "inputs": [
             {
-                "name": "",
-                "type": "bytes32"
+                "name": "url",
+                "type": "string"
             }
         ],
-        "name": "meetups",
+        "name": "countAttendees",
         "outputs": [
             {
-                "name": "",
-                "type": "uint8"
+                "name": "users",
+                "type": "uint256"
             }
         ],
         "payable": false,
