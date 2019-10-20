@@ -68,6 +68,91 @@ export class Meetup extends Entity {
   set attendees(value: Array<string | null>) {
     this.set("attendees", Value.fromStringArray(value));
   }
+
+  get title(): string | null {
+    let value = this.get("title");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set title(value: string | null) {
+    if (value === null) {
+      this.unset("title");
+    } else {
+      this.set("title", Value.fromString(value as string));
+    }
+  }
+
+  get start(): string | null {
+    let value = this.get("start");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set start(value: string | null) {
+    if (value === null) {
+      this.unset("start");
+    } else {
+      this.set("start", Value.fromString(value as string));
+    }
+  }
+
+  get ends(): string | null {
+    let value = this.get("ends");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set ends(value: string | null) {
+    if (value === null) {
+      this.unset("ends");
+    } else {
+      this.set("ends", Value.fromString(value as string));
+    }
+  }
+
+  get image(): string | null {
+    let value = this.get("image");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set image(value: string | null) {
+    if (value === null) {
+      this.unset("image");
+    } else {
+      this.set("image", Value.fromString(value as string));
+    }
+  }
+
+  get location(): string | null {
+    let value = this.get("location");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set location(value: string | null) {
+    if (value === null) {
+      this.unset("location");
+    } else {
+      this.set("location", Value.fromString(value as string));
+    }
+  }
 }
 
 export class Attendee extends Entity {

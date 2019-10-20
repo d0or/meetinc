@@ -23,6 +23,8 @@ export function handleIPFS(value: JSONValue, url: string): void {
 
   meetup.title = obj.get("title").toString()
   meetup.start = obj.get("title").toString()
+  meetup.ends = obj.get("image").toString()
+  meetup.location = obj.get("location").toString()
   meetup.save()
 }
 
