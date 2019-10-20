@@ -21,6 +21,8 @@
     "write-file-webpack-plugin": "4.5.0"
   },
   "dependencies": {
+    "ethers": "^4.0.38",
+    "ipfs": "^0.38.1",
     "web-auto-extractor": "^1.0.17"
   }
 }
