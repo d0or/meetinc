@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { client, getAllEvents } from "../lib/gqlClient.js"
 
-import abi from '../contracts/Meeting_abi.json'
+import meetingContract from '../contracts/Meeting.json'
 import { ethers } from "ethers"
 //import { provider, wallet } from '../lib/provider'
 
@@ -40,7 +40,7 @@ export default () => {
 
             const contractAddress = '0x55Fb10e4857293670446D2599A466E95fD5Ac0e8'; //'0xC4e47254c19102F55D8739181f9727FCE267564c';
             console.log(contractAddress)
-            const contract = new ethers.Contract(contractAddress, abi, provider);
+            const contract = new ethers.Contract(contractAddress, meetingContract.abi, provider);
             const result = await contract.isRegistered("http://www.golem.de")
             console.log(result)
 
