@@ -1,4 +1,12 @@
-type MeetupCreated @entity {
+type Meetup @entity {
   id: ID!
   url: String! # string
+  cid: Bytes! # bytes 
+  attendees: [Attendee]! # address
+}
+
+type Attendee @entity {
+  id: ID!
+  address: Bytes!
+  timestamp: String!
 }

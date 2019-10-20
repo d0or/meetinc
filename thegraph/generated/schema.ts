@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class MeetupCreated extends Entity {
+export class Meetup extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -20,17 +20,17 @@ export class MeetupCreated extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save MeetupCreated entity without an ID");
+    assert(id !== null, "Cannot save Meetup entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save MeetupCreated entity with non-string ID. " +
+      "Cannot save Meetup entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("MeetupCreated", id.toString(), this);
+    store.set("Meetup", id.toString(), this);
   }
 
-  static load(id: string): MeetupCreated | null {
-    return store.get("MeetupCreated", id) as MeetupCreated | null;
+  static load(id: string): Meetup | null {
+    return store.get("Meetup", id) as Meetup | null;
   }
 
   get id(): string {
@@ -49,5 +49,72 @@ export class MeetupCreated extends Entity {
 
   set url(value: string) {
     this.set("url", Value.fromString(value));
+  }
+
+  get cid(): Bytes {
+    let value = this.get("cid");
+    return value.toBytes();
+  }
+
+  set cid(value: Bytes) {
+    this.set("cid", Value.fromBytes(value));
+  }
+
+  get attendees(): Array<string | null> {
+    let value = this.get("attendees");
+    return value.toStringArray();
+  }
+
+  set attendees(value: Array<string | null>) {
+    this.set("attendees", Value.fromStringArray(value));
+  }
+}
+
+export class Attendee extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Attendee entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Attendee entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Attendee", id.toString(), this);
+  }
+
+  static load(id: string): Attendee | null {
+    return store.get("Attendee", id) as Attendee | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get address(): Bytes {
+    let value = this.get("address");
+    return value.toBytes();
+  }
+
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
+  }
+
+  get timestamp(): string {
+    let value = this.get("timestamp");
+    return value.toString();
+  }
+
+  set timestamp(value: string) {
+    this.set("timestamp", Value.fromString(value));
   }
 }

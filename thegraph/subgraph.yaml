@@ -6,7 +6,7 @@ dataSources:
     name: Contract
     network: ropsten
     source:
-      address: "0x0499EcCf001f61e012E13c6A1fE8F8d46B825beE"
+      address: "0xC4e47254c19102F55D8739181f9727FCE267564c"
       abi: Contract
     mapping:
       kind: ethereum/events
@@ -14,10 +14,13 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - MeetupCreated
+        - MeetupRSVPee
       abis:
         - name: Contract
           file: ./abis/Contract.json
       eventHandlers:
-        - event: MeetupCreated(string)
+        - event: MeetupCreated(string,bytes)
           handler: handleMeetupCreated
+        - event: MeetupRSVPee(string,address)
+          handler: handleMeetupRSVPee
       file: ./src/mapping.ts
