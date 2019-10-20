@@ -203,3 +203,68 @@ export class Attendee extends Entity {
     this.set("timestamp", Value.fromString(value));
   }
 }
+
+export class Location extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Location entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Location entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Location", id.toString(), this);
+  }
+
+  static load(id: string): Location | null {
+    return store.get("Location", id) as Location | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get lat(): string | null {
+    let value = this.get("lat");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set lat(value: string | null) {
+    if (value === null) {
+      this.unset("lat");
+    } else {
+      this.set("lat", Value.fromString(value as string));
+    }
+  }
+
+  get long(): string | null {
+    let value = this.get("long");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set long(value: string | null) {
+    if (value === null) {
+      this.unset("long");
+    } else {
+      this.set("long", Value.fromString(value as string));
+    }
+  }
+}

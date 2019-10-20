@@ -59,23 +59,6 @@ export class MeetupRSVPee__Params {
   }
 }
 
-export class Contract__eventsResult {
-  value0: Bytes;
-  value1: boolean;
-
-  constructor(value0: Bytes, value1: boolean) {
-    this.value0 = value0;
-    this.value1 = value1;
-  }
-
-  toMap(): TypedMap<string, EthereumValue> {
-    let map = new TypedMap<string, EthereumValue>();
-    map.set("value0", EthereumValue.fromBytes(this.value0));
-    map.set("value1", EthereumValue.fromBoolean(this.value1));
-    return map;
-  }
-}
-
 export class Contract extends SmartContract {
   static bind(address: Address): Contract {
     return new Contract("Contract", address);
@@ -96,28 +79,6 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(value[0].toI32());
-  }
-
-  events(param0: Bytes): Contract__eventsResult {
-    let result = super.call("events", [EthereumValue.fromFixedBytes(param0)]);
-
-    return new Contract__eventsResult(
-      result[0].toBytes(),
-      result[1].toBoolean()
-    );
-  }
-
-  try_events(param0: Bytes): CallResult<Contract__eventsResult> {
-    let result = super.tryCall("events", [
-      EthereumValue.fromFixedBytes(param0)
-    ]);
-    if (result.reverted) {
-      return new CallResult();
-    }
-    let value = result.value;
-    return CallResult.fromValue(
-      new Contract__eventsResult(value[0].toBytes(), value[1].toBoolean())
-    );
   }
 
   attendees(param0: Bytes): i32 {
@@ -175,62 +136,13 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBoolean());
   }
 
-  getAttendees(id: Bytes): Array<Address> {
-    let result = super.call("getAttendees", [EthereumValue.fromFixedBytes(id)]);
-
-    return result[0].toAddressArray();
-  }
-
-  try_getAttendees(id: Bytes): CallResult<Array<Address>> {
-    let result = super.tryCall("getAttendees", [
-      EthereumValue.fromFixedBytes(id)
-    ]);
-    if (result.reverted) {
-      return new CallResult();
-    }
-    let value = result.value;
-    return CallResult.fromValue(value[0].toAddressArray());
-  }
-
-  getAttendees1(url: string): Array<Address> {
-    let result = super.call("getAttendees", [EthereumValue.fromString(url)]);
-
-    return result[0].toAddressArray();
-  }
-
-  try_getAttendees1(url: string): CallResult<Array<Address>> {
-    let result = super.tryCall("getAttendees", [EthereumValue.fromString(url)]);
-    if (result.reverted) {
-      return new CallResult();
-    }
-    let value = result.value;
-    return CallResult.fromValue(value[0].toAddressArray());
-  }
-
-  isRegistered(id: Bytes): boolean {
-    let result = super.call("isRegistered", [EthereumValue.fromFixedBytes(id)]);
-
-    return result[0].toBoolean();
-  }
-
-  try_isRegistered(id: Bytes): CallResult<boolean> {
-    let result = super.tryCall("isRegistered", [
-      EthereumValue.fromFixedBytes(id)
-    ]);
-    if (result.reverted) {
-      return new CallResult();
-    }
-    let value = result.value;
-    return CallResult.fromValue(value[0].toBoolean());
-  }
-
-  isRegistered1(url: string): boolean {
+  isRegistered(url: string): boolean {
     let result = super.call("isRegistered", [EthereumValue.fromString(url)]);
 
     return result[0].toBoolean();
   }
 
-  try_isRegistered1(url: string): CallResult<boolean> {
+  try_isRegistered(url: string): CallResult<boolean> {
     let result = super.tryCall("isRegistered", [EthereumValue.fromString(url)]);
     if (result.reverted) {
       return new CallResult();
@@ -239,32 +151,13 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBoolean());
   }
 
-  countAttendees(id: Bytes): BigInt {
-    let result = super.call("countAttendees", [
-      EthereumValue.fromFixedBytes(id)
-    ]);
-
-    return result[0].toBigInt();
-  }
-
-  try_countAttendees(id: Bytes): CallResult<BigInt> {
-    let result = super.tryCall("countAttendees", [
-      EthereumValue.fromFixedBytes(id)
-    ]);
-    if (result.reverted) {
-      return new CallResult();
-    }
-    let value = result.value;
-    return CallResult.fromValue(value[0].toBigInt());
-  }
-
-  countAttendees1(url: string): BigInt {
+  countAttendees(url: string): BigInt {
     let result = super.call("countAttendees", [EthereumValue.fromString(url)]);
 
     return result[0].toBigInt();
   }
 
-  try_countAttendees1(url: string): CallResult<BigInt> {
+  try_countAttendees(url: string): CallResult<BigInt> {
     let result = super.tryCall("countAttendees", [
       EthereumValue.fromString(url)
     ]);

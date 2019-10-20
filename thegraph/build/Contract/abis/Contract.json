@@ -26,29 +26,6 @@
         "type": "bytes32"
       }
     ],
-    "name": "events",
-    "outputs": [
-      {
-        "name": "cid",
-        "type": "bytes"
-      },
-      {
-        "name": "isCanceled",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
     "name": "attendees",
     "outputs": [
       {
@@ -172,63 +149,6 @@
     "constant": true,
     "inputs": [
       {
-        "name": "id",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getAttendees",
-    "outputs": [
-      {
-        "name": "attendants",
-        "type": "address[]"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "url",
-        "type": "string"
-      }
-    ],
-    "name": "getAttendees",
-    "outputs": [
-      {
-        "name": "attendants",
-        "type": "address[]"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "id",
-        "type": "bytes32"
-      }
-    ],
-    "name": "isRegistered",
-    "outputs": [
-      {
-        "name": "registered",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
         "name": "url",
         "type": "string"
       }
@@ -238,25 +158,6 @@
       {
         "name": "registered",
         "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "id",
-        "type": "bytes32"
-      }
-    ],
-    "name": "countAttendees",
-    "outputs": [
-      {
-        "name": "users",
-        "type": "uint256"
       }
     ],
     "payable": false,
