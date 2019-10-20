@@ -1,18 +1,28 @@
 import React from 'react'
 import { Router, Link } from "@reach/router";
-import Dashboard from "./pages/Dashboard"
+import Signup from "./pages/SignUp"
 import Home from "./pages/Home"
 
 function App() {
   return (
     <div>
-      <nav>
-        <Link to="/">Home</Link> <Link to="dashboard">Dashboard</Link>
-      </nav>
-      <Router>
-        <Home path="/" />
-        <Dashboard path="dashboard" />
-      </Router>
+      <div className="container">
+        <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <Link className="navbar-item" to="/">my events</Link>
+            <Link className="navbar-item" to="signup">Sign in</Link>
+          </div>
+        </nav>
+      </div>
+
+      <div className="section">
+        <div className="container">
+          <Router>
+            <Home path="/" />
+            <Signup path="signup" />
+          </Router>
+        </div>
+      </div >
     </div>
   );
 }
