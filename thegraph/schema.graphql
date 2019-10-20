@@ -3,6 +3,11 @@ type Meetup @entity {
   url: String! # string
   cid: Bytes! # bytes 
   attendees: [Attendee]! # address
+  title: String
+  start: String
+  ends: String
+  image: String,
+  location: String
 }
 
 type Attendee @entity {
