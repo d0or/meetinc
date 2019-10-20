@@ -6,11 +6,26 @@
         height: 30px;
         width: 30px;
         outline: none;
+padding: 1px;
       }
+
+
+img#spinner {
+margin:none
+}
+img#spinner.inactive {
+display:none;
+}
+
+img#spinner.active {
+display: block;
+}
     </style>
   </head>
   <body>
-    <button id="changeColor"></button>
+    <button id="changeColor">
+<img class="inactive" src="images/fruits-apple.gif" id="spinner">
+</button>
     <script src="popup.js"></script>
   </body>
 </html>

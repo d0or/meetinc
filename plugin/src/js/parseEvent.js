@@ -44,23 +44,47 @@ const addToIpfs = async (ipfs, payload) => {
     console.log(data)
     return hash
 }
+
+function sendResult(result){
+    chrome.runtime.sendMessage(result, function (response) {
+       console.log("done");
+    });
+
+    if (result.redirect) {
+        document.location.href = "https://www.google.de"; //result.redirect
+    }
+}
+
 IPFS.create({ repo: String(Math.random() + Date.now()) }).then(ipfs => {
     var documentAsString = DOMtoString(document)
     var parsed = WAE().parse(documentAsString)
     if (parsed.jsonld && parsed.jsonld.Event) {
         // console.log(parsed.jsonld.Event)
         const url = document.location.href
-        eventOnEth(url).then(res => {
+        return eventOnEth(url).then(res => {
             if (res === true) {
-                alert("this event already is tracked on Eth. Join it!")
+                // alert("this event already is tracked on Eth. Join it!");
+
+                sendResult({
+                    redirect: document.location.href,
+                    cid: null
+                });                
             } else {
-                addToIpfs(ipfs, JSON.stringify(parsed.jsonld.Event)).then(hash => {
-                    alert("this event is not tracked on Eth yet. We added its metadata" + hash)
+                return addToIpfs(ipfs, JSON.stringify(parsed.jsonld.Event)).then(hash => {
+                    // alert("this event is not tracked on Eth yet. We added its metadata" + hash)
                     //const data = await node.cat(hash)
-                })
-            }
+                    
+                    sendResult({
+                        redirect: document.location.href,
+                        cid: hash
+                    });
+                });
+            };
         })
+    } else {
+        sendResult({
+            redirect: null,
+            cid: null
+        });
     }
-})
-
-
+});

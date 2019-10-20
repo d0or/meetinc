@@ -12,8 +12,26 @@ chrome.storage.sync.get('color', function(data) {
 changeColor.onclick = function(element) {
   let color = element.target.value;
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {file: 'parseEvent.js'});
+      let spinner = document.getElementById('spinner');
+      
+      spinner.className="active";
+
+      chrome.tabs.executeScript(
+          tabs[0].id,
+          {file: 'parseEvent.js'},
+          async emptyPromise => {
+              const message = new Promise(resolve => {
+                  const listener = request => {
+                      chrome.runtime.onMessage.removeListener(listener);
+                      resolve(request);
+                  };
+                  chrome.runtime.onMessage.addListener(listener);
+              });
+              
+              const result = await message;
+              // alert(JSON.stringify(result));
+              spinner.className="inactive";
+              console.log(result); // Logs t
+          });
   });
 };
