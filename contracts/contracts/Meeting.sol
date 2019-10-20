@@ -37,7 +37,7 @@ contract Meeting {
     emit MeetupRSVPee(url, msg.sender);
   }
 
-  function rsvpForEvent(string memory url) public {
+  function rsvpForExistingEvent(string memory url) public {
     bytes32 id = keccak256(abi.encode(url));
     require(meetups[id] > 0, "meetup needs to be created first");
 
@@ -50,10 +50,10 @@ contract Meeting {
   }
 
   function isAttending(string memory url) public view returns (bool attending) {
-    attending = isAttending(url, msg.sender);
+    attending = isOtherAttending(url, msg.sender);
   }
 
-  function isAttending(string memory url, address identity) public view returns (bool attending) {
+  function isOtherAttending(string memory url, address identity) public view returns (bool attending) {
     bytes32 attend = keccak256(abi.encode(url, identity));
     attending = attendees[attend] == 2;
   }
