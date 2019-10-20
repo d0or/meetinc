@@ -3,6 +3,7 @@ import {
   MeetupRSVPee as MeetupRSVPeeEvent
 } from "../generated/Contract/Contract"
 import { Meetup, Attendee } from "../generated/schema"
+import { ipfs, JSONValue, Value } from "@graphprotocol/graph-ts"
 
 export function handleMeetupCreated(event: MeetupCreatedEvent): void {
   let entity = new Meetup(
@@ -11,6 +12,18 @@ export function handleMeetupCreated(event: MeetupCreatedEvent): void {
   entity.url = event.params.url
   entity.cid = event.params.cid
   entity.save()
+
+  ipfs.mapJSON(event.params.cid.toString(), "handleIPFS", Value.fromString(entity.url));
+}
+
+export function handleIPFS(value: JSONValue, url: string): void {
+  let obj = value.toObject()
+  let meetup = Meetup.load(url)
+
+
+  meetup.title = obj.get("title").toString()
+  meetup.start = obj.get("title").toString()
+  meetup.save()
 }
 
 export function handleMeetupRSVPee(event: MeetupRSVPeeEvent): void {
