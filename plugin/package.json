@@ -1,10 +1,11 @@
 {
-  "name": "chrome-extension-webpack",
-  "version": "0.0.1",
-  "description": "A boilerplate to chrome extension with webpack",
+  "name": "meetin.cc",
+  "version": "0.0.2",
+  "description": "A chrome extension to discover and store events on websites - decentralized",
   "scripts": {
-    "build": "node utils/build.js",
-    "start": "node utils/webserver.js"
+    "prebuild": "rimraf build",
+    "build": "NODE_ENV=production webpack",
+    "watch": "webpack --watch"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.0",
@@ -14,6 +15,7 @@
     "fs-extra": "7.0.1",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
+    "rimraf": "^3.0.0",
     "style-loader": "^0.23.1",
     "webpack": "4.28.4",
     "webpack-cli": "^3.2.1",

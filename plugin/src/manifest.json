@@ -1,14 +1,26 @@
 {
-  "name": "Add this event",
-  "version": "1.0",
-  "description": "Adds an event to Ethereum",
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "name": "Decentralize Events",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "persistent": false
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "detectSchemaorgEvents.js"
+      ]
+    }
+  ],
   "page_action": {
-    "default_popup": "popup.html",
     "default_icon": {
       "16": "get_started16.png",
       "32": "get_started32.png",
