@@ -4,6 +4,7 @@ var webpack = require("webpack"),
   CopyWebpackPlugin = require("copy-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   WriteFilePlugin = require("write-file-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const pjson = require('./package.json');
 
 
@@ -16,6 +17,7 @@ var options = {
   mode: process.env.NODE_ENV || "development",
   entry: {
     background: path.join(__dirname, "src", "js", "background.js"),
+    popup: path.join(__dirname, "src", "js", "popup.js"),
     detectSchemaorgEvents: path.join(__dirname, "src", "js", "detectSchemaorgEvents.js"),
   },
   output: {
@@ -25,8 +27,14 @@ var options = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "babel-loader",
+        options: { presets: ["@babel/env"] }
+      },
+      {
         test: /\.css$/,
-        loader: "style-loader!css-loader",
+        use: ["style-loader", "css-loader"],
         exclude: /node_modules/
       },
       {
@@ -41,9 +49,7 @@ var options = {
       }
     ]
   },
-  resolve: {
-    alias: alias
-  },
+  resolve: { extensions: ["*", ".js", ".jsx"] },
   plugins: [
     new CleanWebpackPlugin(["build"]),
     new CopyWebpackPlugin([{
@@ -58,6 +64,11 @@ var options = {
     }, {
       from: "src/images"
     }]),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "src", "popup.html"),
+      filename: "popup.html",
+      chunks: ["popup"]
+    }),
     new WriteFilePlugin()
   ]
 };
