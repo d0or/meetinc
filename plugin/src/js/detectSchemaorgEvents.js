@@ -1,3 +1,5 @@
+//this is what's called a content script
+
 import DOMtoString from './lib/DOMToString'
 import WAE from 'web-auto-extractor'
 
@@ -9,19 +11,18 @@ const getEvent = entities => {
             return entities.jsonld.BusinessEvent[0]
         }
     }
-    console.debug("not detected")
     return false;
 }
+
 
 (function run() {
     const source = DOMtoString(document)
     const entities = WAE().parse(source)
     const event = getEvent(entities)
     if (event) {
-        console.debug("event detected")
         const message = {
-            url: document.location.href,
-            ...event
+            ...event,
+            url: document.location.href
         }
         chrome.runtime.sendMessage({
             action: "eventDetected",

@@ -1,5 +1,6 @@
 {
   "name": "Decentralize Events",
+  "manifest_version": 2,
   "permissions": [
     "activeTab",
     "storage"
@@ -21,19 +22,27 @@
     }
   ],
   "page_action": {
+    "default_popup": "popup.html",
     "default_icon": {
-      "16": "get_started16.png",
-      "32": "get_started32.png",
-      "48": "get_started48.png",
-      "128": "get_started128.png"
+      "16": "ticket_grey16.png",
+      "32": "ticket_grey32.png",
+      "48": "ticket_grey48.png",
+      "128": "ticket_grey128.png"
     }
   },
   "icons": {
-    "16": "get_started16.png",
-    "32": "get_started32.png",
-    "48": "get_started48.png",
-    "128": "get_started128.png"
+    "16": "ticket16.png",
+    "32": "ticket32.png",
+    "48": "ticket48.png",
+    "128": "ticket128.png"
   },
-  "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "externally_connectable": {
+    "matches": [
+      "https://metamask.io/*"
+    ],
+    "ids": [
+      "*"
+    ]
+  }
 }
