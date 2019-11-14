@@ -1,0 +1,61 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <h1>This is an event simulation page</h1>
+    <p>See specification <a href="https://schema.org/BusinessEvent">here</a></p>
+    <p>open source code to see the JSON+LD event metadata</p>
+    <script type="application/ld+json">
+        {
+            "@type": "BusinessEvent",
+            "@context": "http://schema.org",
+            "name": "Xmas 2019",
+            "url": "http://localhost:8088/jsonld.html",
+            "description": "It's Christmas, deal with it.",
+            "startDate": "2019-12-24T16:00:00+01:00",
+            "endDate": "2019-12-24T22:00:00+01:00",
+            "image": "https://via.placeholder.com/800x150/0000FF/DDDDDD%20?text=A+nice+event",
+            "eventStatus": "EventScheduled",
+            "offers": [
+                {
+                    "@type": "AggregateOffer",
+                    "inventoryLevel": 42,
+                    "availabilityEnds": "2019-12-23T18:00:00Z",
+                    "priceCurrency": "EUR",
+                    "url": "http://localhost:8088",
+                    "lowPrice": 123.45,
+                    "highPrice": 987.65,
+                    "offerCount": 50,
+                    "availabilityStarts": "2019-05-27T08:00:00Z",
+                    "validFrom": "2019-05-27T08:00:00Z",
+                    "availability": "InStock"
+                }
+            ],
+            "location": {
+                "@type": "Place",
+                "name": "Turbine Kreuzberg HQ",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "DE",
+                    "addressLocality": "Berlin",
+                    "addressRegion": "",
+                    "streetAddress": "Ohlauer Straße 43, 10999 Berlin",
+                    "postalCode": "10999"
+                }
+            },
+            
+            "organizer": {
+                "@type": "Organization",
+                "name": "Turbine Kreuzberg",
+                "url": "https://www.turbinekreuzberg.com",
+                "description": "Future as a Service"
+            }
+        }
+    </script>
+
+</body>
+
+</html>
