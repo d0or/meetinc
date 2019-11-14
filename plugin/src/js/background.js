@@ -1,22 +1,49 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-'use strict';
-import '../images/get_started16.png';
-import '../images/get_started32.png';
-import '../images/get_started48.png';
-import '../images/get_started128.png';
+import IPFS from 'ipfs'
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-    chrome.declarativeContent.onPageChanged.addRules([{
-      conditions: [new chrome.declarativeContent.PageStateMatcher({
-        pageUrl: {
-          schemes: ["http", "https"]
-        }
+const events = {}
+const ipfs = new IPFS()
+ipfs.on('ready', () => {
+  console.debug("ipfs node ready and listening")
+})
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+
+  console.debug(sender)
+  console.debug(request)
+
+  if (request.action == "eventDetected") {
+
+    chrome.pageAction.hide(sender.tab.id);
+
+    chrome.pageAction.setTitle({
+      tabId: sender.tab.id,
+      title: "rsvp to " + request.message.name
+    });
+    chrome.pageAction.setIcon({
+      tabId: sender.tab.id,
+      path: {
+        '16': 'ticket16.png',
+        '32': 'ticket32.png',
+        '48': 'ticket48.png',
+        '128': 'ticket128.png',
+      }
+    })
+    events[sender.tab.id] = request.message;
+    chrome.pageAction.show(sender.tab.id);
+
+  } else if (request.action == "queryEvent") {
+    sendResponse(events[request.tab]);
+  } else if (request.action == "storeInIPFS") {
+    ipfs.swarm.addrs().then(peerInfos => {
+      console.debug(peerInfos)
+    })
+
+    ipfs.add(request.payload).then(ref => {
+      ipfs.cat(ref[0].hash).then((data) => {
+        sendResponse(ref[0])
       })
-      ],
-      actions: [new chrome.declarativeContent.ShowPageAction()]
-    }]);
-  });
+    })
+  }
+  return true; //https://github.com/mozilla/webextension-polyfill/issues/130
 });
+
